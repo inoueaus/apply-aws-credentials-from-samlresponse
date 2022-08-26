@@ -124,8 +124,9 @@ const fileName = process.env.FILE ?? "samlresponse.log";
 const configLocation = process.env.CONFIG_LOCATION ?? ".aws/credentials";
 const profile = process.env.PROFILE ?? "new" + String(Date.now());
 
-console.log(accountNumber, role, provider, fileName, configLocation, profile)
-
 getAWSCredentials(accountNumber, role, provider, fileName)
-  .then((credentials) => writeCredentialsToConfig(credentials, configLocation, profile))
+  .then((credentials) => {
+    writeCredentialsToConfig(credentials, configLocation, profile);
+    console.log(`Updated profile ${profile}.`);
+  })
   .catch((error) => console.log(error));
