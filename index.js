@@ -44,7 +44,7 @@ const getAWSCredentials = (accountNumber, role, provider, fileName) =>
  * @param {string} configLocation Location from local ~/ directory.
  * @param {string} profile
  */
-const writeCredentialsToConfig = (credentials, configLocation = ".aws/credentials", profile = "prayground") => {
+const writeCredentialsToConfig = (credentials, configLocation, profile) => {
   const credentialsPath = path.resolve(process.env.HOME ?? "/", configLocation);
   const configString = readFileSync(credentialsPath, { encoding: "utf-8" });
 
@@ -52,8 +52,7 @@ const writeCredentialsToConfig = (credentials, configLocation = ".aws/credential
 
   {
     const keyToEdit = `[${profile}]`;
-    const currentSettings = credentialsConfig.get(keyToEdit);
-    if (!currentSettings) throw Error("Profile provided is not defined in settings file.");
+    const currentSettings = credentialsConfig.get(keyToEdit) ?? {}; // creates new profile if not present
     currentSettings["aws_access_key_id"] = credentials.AccessKeyId;
     currentSettings["aws_secret_access_key"] = credentials.SecretAccessKey;
     currentSettings["aws_session_token"] = credentials.SessionToken;
@@ -115,11 +114,13 @@ const convertCredentialMapToString = (configMap) =>
     return prev + current + "\n";
   }, "");
 
-const accountNumber = process.env.ACCNUM ?? 129119569090;
-const role = process.env.ROLE ?? "GSuite-AWS-PrayGround-Menber";
-const provider = process.env.PROVIDER ?? "Google";
+const accountNumber = process.env.ACCNUM ?? 0;
+const role = process.env.ROLE ?? "";
+const provider = process.env.PROVIDER ?? "";
 const fileName = process.env.FILE ?? "samlresponse.log";
+const configLocation = process.env.CONFIG_LOCATION ?? ".aws/credentials";
+const profile = process.env.PROFILE ?? "new" + String(Date.now());
 
 getAWSCredentials(accountNumber, role, provider, fileName)
-  .then((credentials) => writeCredentialsToConfig(credentials))
+  .then((credentials) => writeCredentialsToConfig(credentials, configLocation, profile))
   .catch((error) => console.log(error));
