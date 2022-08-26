@@ -1,0 +1,11 @@
+{
+  "name": "Apply-SAML-Credentials-To-AWS-Config",
+  "version": "0.1",
+  "description": "Gets AWS credentials from samlresponse and saves them to a local config file.",
+  "main": "index.js",
+  "author": "Austin Mayer",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^18.7.13"
+  }
+}
