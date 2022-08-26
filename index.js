@@ -2,6 +2,9 @@
 const { exec } = require("child_process");
 const { readFileSync, writeFileSync } = require("fs");
 const path = require("path");
+const dotenv = require("dotenv");
+
+dotenv.config();
 
 /**
  * @typedef {{
@@ -120,6 +123,8 @@ const provider = process.env.PROVIDER ?? "";
 const fileName = process.env.FILE ?? "samlresponse.log";
 const configLocation = process.env.CONFIG_LOCATION ?? ".aws/credentials";
 const profile = process.env.PROFILE ?? "new" + String(Date.now());
+
+console.log(accountNumber, role, provider, fileName, configLocation, profile)
 
 getAWSCredentials(accountNumber, role, provider, fileName)
   .then((credentials) => writeCredentialsToConfig(credentials, configLocation, profile))
