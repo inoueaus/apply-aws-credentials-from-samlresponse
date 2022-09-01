@@ -10,7 +10,7 @@
   "private": false,
   "repository": {
     "type": "git",
-    "url": "https://github.com/tronicboy1/apply-saml-creds"
+    "url": "https://github.com/tronicboy1/apply-aws-credentials-from-samlresponse"
   },
   "scripts": {
     "build": "tsc",
