@@ -1,6 +1,6 @@
 {
   "name": "apply-aws-credentials-from-samlresponse",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Gets AWS credentials from samlresponse and saves them to a local config file.",
   "main": "lib",
   "types": "lib",
