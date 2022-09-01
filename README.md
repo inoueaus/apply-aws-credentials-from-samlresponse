@@ -1,4 +1,4 @@
-# About this application
+# About this Application
 
 This application was built to copy the AWS credentials provided by logging into AWS using a SAML Response.
 
@@ -6,7 +6,7 @@ I found it very annoying to have to copy the credentials over every time, and th
 
 # How to Use
 
-## Store your SAML Response in a local file.
+## Store your SAML Response in a Local File
 
 First, you must store the SAML Response you obtained from logging in to a local log file, such as `samlresponse.log`
 
@@ -18,11 +18,11 @@ vim samlresponse.log
 
 (press CMD + V then :wq)
 
-## Provide settings to the application
+## Provide Settings to the Application
 
 This application requires you provide the your AWS account number, ARN role name, SAML provider name, SAML Response file location
 
-You can provide settings my creating a `.env` file in the directory of execution, or providing the necessary information with flags in the cli.
+You can provide settings by creating a `.env` file in the directory of execution, or providing the necessary information with flags in the cli.
 
 ### Creating an `.env` File
 
@@ -37,7 +37,7 @@ CONFIG_LOCATION=<location of aws config, defaults to .aws/credentials>
 PROFILE=<profile name, will create new profile if not provided>
 ```
 
-### Using flags
+### Using Flags
 
 Prepare the following arguments for the command.
 
