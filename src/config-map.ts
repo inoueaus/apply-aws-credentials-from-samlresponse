@@ -1,22 +1,19 @@
-//@ts-check
-/**
- * @typedef {Map<string, Record<string, string>>} ConfigMap
- */
+type ConfigMap = Map<string, Record<string, string>>
+
 /**
  * Converts credential config string into a Map for editing.
  *
  * @param {string} configString
  * @returns {ConfigMap}
  */
-const getCredentialsConfigMap = (configString) => {
+export const getCredentialsConfigMap = (configString: string): ConfigMap => {
   const regex = /(\[.*\])\n*([^\[]+)/g;
   const matchGenerator = configString.matchAll(regex);
-  const configMap = new Map();
+  const configMap: ConfigMap = new Map();
   for (const match of matchGenerator) {
     if (!match) break;
     const [_, key, value] = match;
-    /** @type {Record<string, string>} */
-    const valueObject = value.split("\n").reduce((prev, row) => {
+    const valueObject = value.split("\n").reduce<Record<string, string>>((prev, row) => {
       if (!row) return prev;
       const regex = /([a-z_]*)=(.*)/g;
       const match = regex.exec(row);
@@ -35,7 +32,7 @@ const getCredentialsConfigMap = (configString) => {
  * @param {ConfigMap} configMap
  * @returns {string}
  */
-const convertCredentialMapToString = (configMap) =>
+export const convertCredentialMapToString = (configMap: ConfigMap) =>
   [...configMap.keys()].reduce((prev, key) => {
     const entry = configMap.get(key);
     if (!entry) return prev;
@@ -47,4 +44,4 @@ const convertCredentialMapToString = (configMap) =>
     return prev + current + "\n";
   }, "");
 
-module.exports = { convertCredentialMapToString, getCredentialsConfigMap };
+

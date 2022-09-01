@@ -1,7 +1,7 @@
 //@ts-check
-const dotenv = require("dotenv");
-const getAWSCredentials = require("./get-aws-credentials");
-const writeCredentialsToConfig = require("./write-credentials-to-config");
+import dotenv from "dotenv";
+import getAWSCredentials from "./get-aws-credentials";
+import writeCredentialsToConfig from "./write-credentials-to-config";
 
 dotenv.config();
 

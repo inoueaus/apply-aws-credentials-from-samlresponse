@@ -1,13 +1,11 @@
-//@ts-check
-const { readFileSync, writeFileSync } = require('fs');
-const path = require('path');
-const { getCredentialsConfigMap, convertCredentialMapToString } = require('./config-map');
-
+import { readFileSync, writeFileSync } from "fs";
+import path from "path";
+import { convertCredentialMapToString, getCredentialsConfigMap } from "./config-map";
+import { AWSCredentials } from "./get-aws-credentials";
 
 /**
  * @typedef {Awaited<ReturnType<import('./get-aws-credentials')>>} AWSCredentials
  */
-
 
 /**
  * Writes AWS Credentials to credentials configuration file.
@@ -16,7 +14,7 @@ const { getCredentialsConfigMap, convertCredentialMapToString } = require('./con
  * @param {string} configLocation Location from local ~/ directory.
  * @param {string} profile
  */
-const writeCredentialsToConfig = (credentials, configLocation, profile) => {
+const writeCredentialsToConfig = (credentials: AWSCredentials, configLocation: string, profile: string) => {
   const credentialsPath = path.resolve(process.env.HOME ?? "/", configLocation);
   const configString = readFileSync(credentialsPath, { encoding: "utf-8" });
 
@@ -38,4 +36,4 @@ const writeCredentialsToConfig = (credentials, configLocation, profile) => {
   });
 };
 
-module.exports = writeCredentialsToConfig;
+export default writeCredentialsToConfig;
