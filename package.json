@@ -1,16 +1,20 @@
 {
-  "name": "Apply-SAML-Credentials-To-AWS-Config",
-  "version": "0.1",
+  "name": "apply-aws-credentials-from-samlresponse",
+  "version": "1.0.0",
   "description": "Gets AWS credentials from samlresponse and saves them to a local config file.",
   "main": "lib",
   "types": "lib",
   "author": "Austin Mayer",
   "license": "MIT",
+  "private": false,
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "apply": "node lib/index.js"
   },
   "devDependencies": {
-    "@types/node": "^18.7.13"
+    "@types/node": "^18.7.13",
+    "eslint": "^8.23.0",
+    "prettier": "^2.7.1"
   },
   "dependencies": {
     "dotenv": "^16.0.1"
