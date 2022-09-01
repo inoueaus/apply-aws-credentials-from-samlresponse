@@ -1,4 +1,5 @@
-//@ts-check
+#!/usr/bin/env node
+
 import dotenv from "dotenv";
 import convertArgumentsToMap from "./convert-arguments-to-map";
 import getAWSCredentials from "./get-aws-credentials";
